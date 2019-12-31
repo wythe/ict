@@ -13,7 +13,9 @@ debug:
 clang:
 	mkdir $@ && cd $@ && cmake -GNinja -DCMAKE_BUILD_TYPE=Release \
 	-DCMAKE_C_COMPILER=/usr/local/clang_9.0.0/bin/clang \
-	-DCMAKE_CXX_COMPILER=/usr/local/clang_9.0.0/bin/clang++ ..
+	-DCMAKE_CXX_COMPILER=/usr/local/clang_9.0.0/bin/clang++ \
+	"-DCMAKE_CXX_CLANG_TIDY=/usr/local/clang_9.0.0/bin/clang-tidy;-checks=*,-google-readability-braces-around-statements,-fuchsia-default-arguments-calls,-*-braces-around-statements" \
+    ..
 
 clean:
 	cmake --build build --target clean

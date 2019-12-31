@@ -68,7 +68,7 @@ inline Platform hostPlatform() {
 
 namespace ict {
 
-struct unit_error {
+struct unit_error : public std::exception {
     unit_error(const std::string &desc, const char *file, int line,
                bool warn = false)
         : desc(desc), file(file), line(line), warn(warn) {}

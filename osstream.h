@@ -23,7 +23,7 @@ struct osstream {
 // One weird trick to make sure there are no implicit conversions.
 template <typename T> inline osstream &operator<<(osstream &os, T x) = delete;
 
-namespace util {
+namespace detail {
 template <typename S, typename T> S &append(S &os, const T &x) {
     os.x += x;
     return os;
@@ -32,32 +32,32 @@ template <typename S, typename T> S &append_number(S &os, const T &x) {
     os.x += std::to_string(x);
     return os;
 }
-} // namespace util
+} // namespace detail
 
 inline osstream &operator<<(osstream &os, char x) {
-    return util::append(os, x);
+    return detail::append(os, x);
 }
 inline osstream &operator<<(osstream &os, const std::string &x) {
-    return util::append(os, x);
+    return detail::append(os, x);
 }
 inline osstream &operator<<(osstream &os, const char *x) {
-    return util::append(os, x);
+    return detail::append(os, x);
 }
 inline osstream &operator<<(osstream &os, int x) {
-    return util::append_number(os, x);
+    return detail::append_number(os, x);
 }
 inline osstream &operator<<(osstream &os, unsigned long int x) {
-    return util::append_number(os, x);
+    return detail::append_number(os, x);
 }
 inline osstream &operator<<(osstream &os, long int x) {
-    return util::append_number(os, x);
+    return detail::append_number(os, x);
 }
 inline osstream &operator<<(osstream &os, long long x) {
-    return util::append_number(os, x);
+    return detail::append_number(os, x);
 }
 #ifdef WIN32
 inline osstream &operator<<(osstream &os, size_t x) {
-    return util::append_number(os, x);
+    return detail::append_number(os, x);
 }
 #endif
 

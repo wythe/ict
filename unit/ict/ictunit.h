@@ -1,12 +1,9 @@
 #pragma once
-//-- Copyright 2016 Intrig
-//-- See https://github.com/intrig/ict for license.
 #include <unit.h>
 
-class ict_unit 
-{
-    public:
-    void register_tests(ict::unit_test<ict_unit> & ut) {
+class ict_unit {
+  public:
+    void register_tests(ict::unit_test<ict_unit> &ut) {
         ut.skip();
         ut.cont();
         ut.add(&ict_unit::osstream);
